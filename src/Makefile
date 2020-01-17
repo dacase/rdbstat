@@ -2,7 +2,7 @@
 #	You will probably want to change this to /usr/bin or something like that
 BIN = ../bin
 #	PROGS is a list of all the programs.  It is used for "make all"
-PROGS = maketrix transpose io abut anova regress dm desc vincent calc critf pof dprime pair validata manstat perm reverse ts series repeat
+PROGS = maketrix transpose regress desc vincent pair 
 #	CFLAGS is used as the default set of cc compiler options
 CFLAGS = -O
 #	LIBES determines the libraries to append to the cc command
@@ -14,10 +14,13 @@ UNTESTED = "This program has not been rigorously tested"
 .c.o:  $<
 	gcc -c $(CFLAGS) -o $@ $<
 
-all:
+install:
 	make -i $(PROGS)
 clean:
 	-/bin/rm -f *.o y.tab.*
+uninstall:
+	cd ../bin && /bin/rm -f $(PROGS)
+
 maketrix: maketrix.o checkio.o number.o
 	gcc $(CFLAGS) -o $(BIN)/maketrix maketrix.o checkio.o number.o
 transpose: transpose.o checkio.o strings.o number.o
