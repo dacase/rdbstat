@@ -1,0 +1,1694 @@
+%PDF-1.3
+%‚„œ”
+2 0 obj
+<<
+/Length 6643
+>>
+stream
+BT
+/TT2 1 Tf
+12 0 0 12 163.626 698.63 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+[(Notes on the History and Design of UNIX|ST)90(A)95(T)]TJ
+/TT4 1 Tf
+11 0 0 11 254.156 679.63 Tm
+[(Gary P)80(erlman)]TJ
+10 0 0 10 69.336 619.63 Tm
+0.25 Tw
+[(1. INTR)40(ODUCTION)]TJ
+/TT6 1 Tf
+3.5 -3.6 TD
+0.1122 Tw
+[(In this memo, I discuss the issues in the design of the UNIX|ST)93(A)111(T)111( )-111(programs. )-250(UNIX|ST)93(A)111(T)111( )-110.9(is)-362.1(a)]TJ
+-2.5 -1.2 TD
+0.0601 Tw
+[(collection of programs running on the UNIX* operating system.)-560.1(The programs are designed to be easy)]TJ
+T*
+0.1724 Tw
+[(to use in the sorts of data analysis problems common in analyzing e)15(xperimental psychological data.)]TJ
+T*
+0.0648 Tw
+[(Because data analysis is a common acti)25(vity in man)15(y)]TJ
+/TT7 1 Tf
+21.6208 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0648 Tw
+[(elds, the programs ha)20(v)15(e)15( )-15.1(found use in a v)25(ariety of)]TJ
+-22.177 -1.2 TD
+0.1905 Tw
+[(conte)15(xts. )-250.1(T)80(o)-440.6(date, the programs are being distrib)20(uted to o)15(v)15(e)0(r)-440.5(100 UNIX sites in 11 countries on 4)]TJ
+T*
+0.2423 Tw
+[(continents, and with their recent release on the USENIX distrib)20(ution tape, their use will probably)]TJ
+T*
+0.1142 Tw
+[(increase. )-250.1(Most)-364.3(UNIX|ST)93(A)111(T)111( )-111(users ha)20(v)15(e)15( )-15(access to other more po)25(werful statistical packages, b)20(ut for the)]TJ
+T*
+0.0081 Tw
+[(cases where UNIX|ST)93(A)111(T)111( )-111(programs are applicable, the programs seem to be preferred because the)15(y)-258.2(are so)]TJ
+T*
+0 Tw
+[(easy to use.)-500(In later paragraphs, the reasons for their ease of use will be discussed.)]TJ
+/TT4 1 Tf
+-1 -2.4 TD
+0.25 Tw
+[(2. HIST)18(OR)18(Y)]TJ
+/TT6 1 Tf
+3.5 -3.6 TD
+0.0458 Tw
+[(UNIX|ST)93(A)111(T)111( )-111.1(be)15(g)15( )285.8(an)-295.9(when I w)10(as a psychology graduate student at the Uni)25(v)15(ersity of California, San)]TJ
+-2.5 -1.2 TD
+0.206 Tw
+[(Die)15(go. )-250(W)80(e)-456(had V)111(ersion 6 UNIX running on a DEC PDP 11/45 which had limited memory)65(.)-706.1(A)0(s)-456.1(a)]TJ
+T*
+0.3483 Tw
+[(psychological laboratory)65(,)-598.3(w)0(e)-598.3(had data to analyze, b)20(ut we had no analysis programs on UNIX.)]TJ
+T*
+0.0114 Tw
+[(Occasionally)65(,)-261.4(w)0(e)-261.4(got a tape from a site with their latest programs, b)20(ut the)15(y)-261.4(tended to be too big, too slo)25(w)65(,)]TJ
+T*
+0.0921 Tw
+[(too clumsy)65(,)-342.2(o)0(r)-342.2(not do what we w)10(anted them to do.)-592.2(I)-342.1(tried to )]TJ
+/TT7 1 Tf
+25.4611 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0921 Tw
+(nd statistical packages with no success.)Tj
+-26.0173 -1.2 TD
+0.0868 Tw
+[(W)80(e)80( )-80(e)25(v)15(en)-336.8(got a standard lar)18(ge statistical package, b)20(ut its programs were not designed for our little PDP)]TJ
+T*
+0.0287 Tw
+[(11/45. )-250.1(So)-278.8(huge were the)15(y)65(,)65( )-65.1(with all their immense po)25(wer)40(,)-278.7(that to load a program and do all the necessary)]TJ
+T*
+0.0114 Tw
+[(o)15(v)15(erlaying of subroutines required tw)10(o)-261.4(minutes to get the mean of one number)55(.)-511.5(W)80(e)-261.5(were not v)15(ery happ)10(y)65(.)]TJ
+2.5 -1.8 TD
+0.0138 Tw
+[(I)-263.8(wrote the )]TJ
+/TT7 1 Tf
+4.6229 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0137 Tw
+[(rst v)15(ersion of DESC about that time; it w)10(as a program to describe a single distrib)20(ution)]TJ
+-7.6791 -1.2 TD
+0.011 Tw
+[(of data with summary statistics, frequenc)15(y)-261(tables, and histograms.)-511(I)-261(w)10(as tired of writing a)]TJ
+/TT4 1 Tf
+36.3812 0 TD
+0 Tw
+(mean)Tj
+/TT6 1 Tf
+2.427 0 TD
+(program)Tj
+-38.8082 -1.2 TD
+0.0218 Tw
+[(e)25(v)25( )261.8(ery time I w)10(anted to do the simplest data analysis, so I tried to write a general descripti)25(v)15(e)15( )-15(once and for)]TJ
+T*
+0.1566 Tw
+[(all. )-250(DESC)-406.6(w)10(a)0(s)-406.6(not welcomed with much f)10(an f)10(are; I had to go door to door to get people to use it.)]TJ
+T*
+0.1633 Tw
+[(Evidently)65(,)-413.4(people thought it w)10(ould be easier to write their o)25(wn programs, or do the analyses with a)]TJ
+T*
+0.1112 Tw
+[(calculator)40(,)-361.1(then learn ot use my program.)-611.2(I)-361.2(searched personal binary directories to see if people were)]TJ
+T*
+0.1272 Tw
+[(making their o)25(wn programs to do sub-parts of DESC.)-627.3(Sure enough, people had programs, e)25(v)15(en)-377.2(shell)]TJ
+T*
+0.0025 Tw
+[(programs, to compute means and the occasional standard de)25(viation. )-250(Their)-252.5(programs were dif)]TJ
+/TT7 1 Tf
+37.2735 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0025 Tw
+(cult to use,)Tj
+-37.8296 -1.2 TD
+0.1671 Tw
+[(with no documentation and silly con)40(v)15(entions lik)10(e)-417.1(h)0(a)20(ving to end the input with a minus one.)-667.1(DESC)]TJ
+T*
+0.0186 Tw
+[(allo)25(wed free format input and read until the end of a )]TJ
+/TT7 1 Tf
+21.3105 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0186 Tw
+[(le, pro)15(vided man)15(y)-268.7(options, and its output w)10(as easy)]TJ
+-21.8666 -1.2 TD
+0.0314 Tw
+[(to read.)-531.5(After about six months, DESC w)10(as in moderate use by part of our lab)40(.)-531.4(I)-281.4(w)10(a)0(s)-281.4(encouraged to see)]TJ
+T*
+0 Tw
+[(people other than myself berating a third party for writing their o)25(wn programs to do what DESC did.)]TJ
+2.5 -1.8 TD
+0.0495 Tw
+[(After DESC, I wrote P)92(AIR, a program for paired data analysis \(a common design in psychology\).)]TJ
+-2.5 -1.2 TD
+0.0285 Tw
+[(P)92(AIR w)10(as based on a program written by Don Gentner of our lab)40(.)-528.5(I)-278.5(lik)10(ed his program, b)20(ut not its output)]TJ
+T*
+0.0414 Tw
+(format, which I modi)Tj
+/TT7 1 Tf
+8.6222 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0414 Tw
+[(ed.)-541.4(P)92(AIR follo)25(wed similar format con)40(v)15(entions as DESC and people f)10(amiliar with)]TJ
+-9.1784 -1.2 TD
+0.0992 Tw
+[(DESC found P)92(AIR that much easier to use.)-599.2(Ov)15(er the years since then, additional statistics and e)25(v)15(en)-349.1(a)]TJ
+T*
+0 Tw
+[(simple scatter)18(gram routine ha)20(v)15(e)15( )-15(been added.)]TJ
+2.5 -1.8 TD
+0.1087 Tw
+[(Both DESC and P)92(AIR read from the standard input and write to the standard output.)-608.8(The main)]TJ
+-2.5 -1.2 TD
+0.0376 Tw
+[(reason for this w)10(as that it is easier than opening )]TJ
+/TT7 1 Tf
+19.6389 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0375 Tw
+[(les.)-537.6(Looking back on this con)40(v)15(enient decision, I see it)]TJ
+-20.1951 -1.2 TD
+-0.0001 Tc
+0.004 Tw
+[(as critical to the design of the rest of the package.)-504(The standard UNIX philosophy)-254(i)-0.1(s)-254(t)-0.1(o)-254(t)-0.1(o)-254(create modular)]TJ
+ET
+0 G
+1 J 1 j 0.32 w 10 M []0 d
+1 i 
+69.39 64.95 m
+149.31 64.95 l
+S
+BT
+8 0 0 8 69.336 48 Tm
+0 Tc
+0 Tw
+[(*)-2157.4(UNIX is a trademark of Bell Laboratories.)]TJ
+ET
+endstream
+endobj
+3 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+/TT6 6 0 R
+/TT7 7 0 R
+>>
+/ExtGState <<
+/GS1 8 0 R
+>>
+>>
+endobj
+11 0 obj
+<<
+/Length 8816
+>>
+stream
+BT
+/TT6 1 Tf
+10 0 0 10 277.006 744 Tm
+0 g
+/GS1 gs
+0.25 Tc
+0 Tw
+(-2-)Tj
+-19.767 -4.8 TD
+0 Tc
+0.0359 Tw
+[(programs that can be connected via pipelines with e)15(xisting tools in no)15(v)15(e)0(l)-285.9(w)10(ays. )-250(This)-285.9(is w)10(orth repeating.)]TJ
+/TT2 1 Tf
+0 -1.2 TD
+0.2481 Tw
+[(The standard UNIX philosoph)15(y)-498.1(i)0(s)-498.1(t)0(o)-498.1(t)0(o)-498.1(c)0(r)18(eate modular pr)18(ograms that can be connected via)]TJ
+T*
+0.118 Tw
+[(pipelines with existing tools in no)10(v)10(e)0(l)-368(ways.)]TJ
+/TT6 1 Tf
+19.2249 0 TD
+-0.0001 Tc
+[(I)-368.1(kne)24.9(w)-368(o)-0.1(f)-368(this philosophy)64.9(,)64.9( )-65(b)19.9(ut did not follo)24.9(w)-368(i)-0.1(t)-368(for an)14.9(y)]TJ
+-19.2249 -1.2 TD
+0 Tc
+0.0072 Tw
+[(particular reason.)-507.2(As other UNIX|ST)93(A)111(T)111( )-111(programs de)25(v)15(eloped, particularly ones for transforming data, the)]TJ
+T*
+-0.0002 Tc
+0.0002 Tw
+[(philosophy)-250.2(dominated the design.)]TJ
+2.5 -1.8 TD
+0 Tc
+0.1435 Tw
+[(W)80(e)80( )-80(tended to k)10(eep our data in matrix type )]TJ
+/TT7 1 Tf
+18.2786 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.1435 Tw
+(les with some uniform number of blank separated)Tj
+/TT7 1 Tf
+-21.3348 -1.2 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.209 Tw
+[(elds per line.)-709(W)80(e)80( )-80(used these as master data )]TJ
+/TT7 1 Tf
+19.3782 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.2091 Tw
+[(les from which we e)15(xtracted the columns we were)]TJ
+-20.4905 -1.2 TD
+0.1225 Tw
+[(interested in.)-622.5(Jay McClelland wrote a program called)]TJ
+/TT4 1 Tf
+22.6948 0 TD
+0 Tw
+[(cole)20(x)]TJ
+/TT6 1 Tf
+2.4619 0 TD
+0.1225 Tw
+[(which e)15(xtracted columns from such )]TJ
+/TT7 1 Tf
+15.1209 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+(les.)Tj
+/TT4 1 Tf
+-40.8338 -1.2 TD
+[(Cole)20(x)]TJ
+/TT6 1 Tf
+2.7072 0 TD
+0.1447 Tw
+[(w)10(a)0(s)-394.7(indispensable, and Jay added features to e)15(xtract columns based on conditions by allo)25(wing)]TJ
+-2.7072 -1.2 TD
+0.0307 Tw
+[(analysts to set minimum and maximum allo)25(w)10(able v)25(alues for each column.)-530.7(W)80(e)80( )-80(w)10(anted to be able to add,)]TJ
+T*
+0.0311 Tw
+[(subtract, and do other transformations on the v)25(alues of the columns to create ne)25(w)]TJ
+/TT7 1 Tf
+33.1256 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0311 Tw
+(les of data so I wrote)Tj
+-33.6818 -1.2 TD
+0.2099 Tw
+[(a)-459.9(program called)]TJ
+/TT4 1 Tf
+7.5984 0 TD
+0 Tw
+[(tr)15(ans)]TJ
+/TT6 1 Tf
+2.501 0 TD
+0.2098 Tw
+[(which did an inadequate job using a simple syntax.)-709.8(W)80(e)80( )-80(needed some data)]TJ
+-10.0993 -1.2 TD
+0 Tw
+[(massager that could be handed comple)15(x)-250(e)15(xpressions.)]TJ
+2.5 -1.8 TD
+0.0691 Tw
+[(In the summer of 1980, I w)10(as teaching myself about compilers and at the same time learned of a)]TJ
+-2.5 -1.2 TD
+0.0114 Tw
+[("compiler)20(-compiler" called)]TJ
+/TT4 1 Tf
+11.1478 0 TD
+0 Tw
+(yacc)Tj
+/TT6 1 Tf
+1.8315 0 TD
+0.0114 Tw
+[(.)-511.4(Based on our need for a data massager and my interest in)]TJ
+/TT4 1 Tf
+24.0016 0 TD
+0 Tw
+(yacc)Tj
+/TT6 1 Tf
+1.8315 0 TD
+[(,)-261.3(I)-261.3(wrote)]TJ
+-38.8125 -1.2 TD
+0.0346 Tw
+[(DM, no)25(w)-284.6(called the data manipulator for public consumption.)-534.6(DM allo)25(ws an analyst to write a series of)]TJ
+T*
+0.0513 Tw
+[(C-lik)10(e)-301.3(e)15(xpressions for conditional e)15(xtraction of algebraic combinations of columns in a master data )]TJ
+/TT7 1 Tf
+40.6665 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+(le.)Tj
+-41.2226 -1.2 TD
+0.1312 Tw
+[(W)40(ith DM,)]TJ
+/TT4 1 Tf
+4.5832 0 TD
+0 Tw
+[(cole)20(x)]TJ
+/TT6 1 Tf
+2.4706 0 TD
+(and)Tj
+/TT4 1 Tf
+1.825 0 TD
+[(tr)15(ans)]TJ
+/TT6 1 Tf
+2.4224 0 TD
+0.1312 Tw
+[(became immediately obsolete, especially after Jay helped add DMí)55(s)-381.3(string)]TJ
+-11.3012 -1.2 TD
+0.028 Tw
+[(handling capabilities.)-528.1(It w)10(as not until a year later that we found out that there w)10(as a program called)]TJ
+/TT4 1 Tf
+40.5833 0 TD
+0 Tw
+(awk)Tj
+/TT6 1 Tf
+-40.5833 -1.2 TD
+0.023 Tw
+[(that could do all of what DM did, and more.)-523(Ev)15(en so, DM held its o)25(wn because it w)10(as easier to use, and)]TJ
+T*
+0 Tw
+[(for common tasks lik)10(e)-250(column e)15(xtraction, f)10(aster)55(.)]TJ
+2.5 -1.8 TD
+0.135 Tw
+[(After DM w)10(as around, our vie)25(w)-385(o)0(f)-385(data analysis changed to that of a series of transformations)]TJ
+-2.5 -1.2 TD
+0 Tw
+[(follo)25(wed by a speci)]TJ
+/TT7 1 Tf
+7.7782 0 TD
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+(c analysis.)Tj
+-8.3344 -1.8 TD
+(cat data | transformations | analysis)Tj
+T*
+0.0429 Tw
+[(Data be)15(gins in a master data )]TJ
+/TT7 1 Tf
+11.7937 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0429 Tw
+[(le, is sent via a pipe to a series of transformations \(e.g., by DM\) follo)25(wed)]TJ
+-12.3498 -1.2 TD
+0.085 Tw
+[(by a pipe into an analysis program \(e.g., DESC\).)-585.1(Jay McClellandí)55(s)-335(concept of ha)20(ving all the data in a)]TJ
+T*
+0.007 Tw
+(master data )Tj
+/TT7 1 Tf
+4.8451 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.007 Tw
+[(le, and a set of transformation routines prompted him to write the original v)15(ersion of AB)10(UT)]TJ
+-5.4012 -1.2 TD
+0.1482 Tw
+[(on which mine is based.)-648.3(AB)10(UT helps construct master data )]TJ
+/TT7 1 Tf
+25.6893 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.1482 Tw
+[(les while DM tak)10(es them apart.)-648.2(Da)20(v)15(e)]TJ
+-26.2454 -1.2 TD
+0.083 Tw
+(Rumelhart wrote a program called)Tj
+/TT4 1 Tf
+14.3818 0 TD
+0 Tw
+(mc)Tj
+/TT6 1 Tf
+1.4991 0 TD
+0.0831 Tw
+[(\(for Mak)10(e)-333.1(Column\) to re-shape data )]TJ
+/TT7 1 Tf
+15.1502 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0831 Tw
+(les; MAKETRIX is based)Tj
+-31.5873 -1.2 TD
+0 Tw
+[(on this.)-500(And )]TJ
+/TT7 1 Tf
+5.417 0 TD
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+[(nally)65(,)-250(the TRANSPOSE program w)10(as added to the list of transformation tools.)]TJ
+-3.4731 -1.8 TD
+0.2161 Tw
+[(At about the same time, Craig W)40(ill w)10(as w)10(orking on a front end to some standard statistical)]TJ
+-2.5 -1.2 TD
+0.2825 Tw
+[(packageí)55(s)-532.5(ano)15(v)25(a)25( )-25(program, the kind with unfor)18(gi)25(ving )]TJ
+/TT7 1 Tf
+23.1115 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.2825 Tw
+[(x)15(ed column input formats \(all UNIX|ST)93(A)111(T)]TJ
+-23.6676 -1.2 TD
+0.2454 Tw
+(programs use white-space separated )Tj
+/TT7 1 Tf
+15.6422 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.2453 Tw
+[(elds\).)-745.4(I)-495.3(thought this w)10(as noble, b)20(ut that the design of such)]TJ
+-16.1984 -1.2 TD
+0.1088 Tw
+[(programs w)10(as not that easy to )]TJ
+/TT7 1 Tf
+12.8069 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.1088 Tw
+[(x.)-608.8(Besides the input formats, the control languages were abominable,)]TJ
+-13.363 -1.2 TD
+0.0708 Tw
+[(especially those parts to specify the e)15(xperimental design.)-570.9(I)-320.9(decided that there must be a natural w)10(ay to)]TJ
+T*
+0.0946 Tw
+[(enter that data from a design in a w)10(ay that made it impossible to mak)10(e)-344.7(a)0(n)-344.7(error and while making the)]TJ
+T*
+0 Tw
+(data easier to describe.)Tj
+2.5 -1.8 TD
+0.0868 Tw
+(At about this time, Jay McClelland wrote his)Tj
+/TT4 1 Tf
+18.8863 0 TD
+0 Tw
+(dt)Tj
+/TT6 1 Tf
+1.1145 0 TD
+0.0867 Tw
+[(\(for Data T)80(a)0(b)20(ulation\) program to get cell means)]TJ
+-22.5008 -1.2 TD
+0.0733 Tw
+[(using an inno)15(v)25(ati)25(v)15(e)15( )-15(input format.)-573.4(Each datum is accompanied by a set of identifying strings which are)]TJ
+T*
+0.1002 Tw
+(used by)Tj
+/TT4 1 Tf
+3.5333 0 TD
+0 Tw
+(dt)Tj
+/TT6 1 Tf
+1.1279 0 TD
+0.1001 Tw
+[(to decide what cell a datum belongs to.)-600.1(F)15(o)0(r)-350.1(e)15(xample, if you found that a department store)]TJ
+-4.6612 -1.2 TD
+0 Tw
+[(named ABC sold lar)18(ge shoes for $10.95, you w)10(ould enter a line lik)10(e:)]TJ
+0 -1.8 TD
+1.294 Tw
+[(ABC lar)18(ge )-75(shoe)-1767(10.95)]TJ
+T*
+0 Tw
+(This is the essence of the relational database model.)Tj
+2.5 -1.8 TD
+0.044 Tw
+(This concept of self identi)Tj
+/TT7 1 Tf
+10.6174 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.044 Tw
+[(cation w)10(as follo)25(wed in ANO)50(V)135(A)135( )-135.1(in)-294.1(which each datum is preceded by a)]TJ
+-13.6736 -1.2 TD
+0.0441 Tw
+[(series of labels, one for each f)10(actor)40(,)-294.2(identifying the conditions of the f)10(actors under which the datum w)10(a)0(s)]TJ
+T*
+0.3412 Tw
+(collected. A)Tj
+/TT7 1 Tf
+5.5135 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0912 Tw
+[(le of data lik)10(e)-341.2(this is self documenting, and ANO)50(V)135(A)135( )-135(is)-341.2(able to infer the design from its)]TJ
+-6.0696 -1.2 TD
+0.0154 Tw
+[(format without an)15(y)-265.4(interacti)25(v)15(e)15( )-15(speci)]TJ
+/TT7 1 Tf
+14.4461 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0153 Tw
+[(cation by the user)55(.)-515.4(The REGRESS program w)10(as designed to accept)]TJ
+-15.0022 -1.2 TD
+0.0238 Tw
+(its natural input format too: a )Tj
+/TT7 1 Tf
+12.0847 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0238 Tw
+[(le of N columns implies an N v)25(ariable re)15(gression. )-250.1(This)-273.9(is easy to e)15(xplain)]TJ
+-12.6408 -1.2 TD
+0 Tw
+[(to e)25(v)15(en)-250(the most computer nai)25(v)15(e)15( )-15(analysts.)]TJ
+ET
+endstream
+endobj
+12 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+/TT6 6 0 R
+/TT7 7 0 R
+>>
+/ExtGState <<
+/GS1 8 0 R
+>>
+>>
+endobj
+14 0 obj
+<<
+/Length 8205
+>>
+stream
+BT
+/TT6 1 Tf
+10 0 0 10 277.006 744 Tm
+0 g
+/GS1 gs
+0.25 Tc
+0 Tw
+(-3-)Tj
+-17.267 -4.8 TD
+0 Tc
+0.013 Tw
+[(By this time, the package had reached a critical mass, at least for our laboratoryí)55(s)-263(needs. )-250(Someone)]TJ
+-2.5 -1.2 TD
+0.1101 Tw
+(suggested I share these programs with other psychologists and sent a general description of them to a)Tj
+T*
+0.0094 Tw
+(journal in which psychologists share technical information about)Tj
+/TT4 1 Tf
+26.2358 0 TD
+0 Tw
+(doing)Tj
+/TT6 1 Tf
+2.5371 0 TD
+0.0093 Tw
+(research as opposed to the)Tj
+/TT4 1 Tf
+10.7926 0 TD
+0 Tw
+[(r)37(esults)]TJ
+/TT6 1 Tf
+-39.5656 -1.2 TD
+0.1424 Tw
+[(of research.)-642.4(On Gre)15(g)-392.4(D)0(a)20(vidsoní)55(s)-392.4(suggestion, I added more e)15(xtensi)25(v)15(e)15( )-15(error checking to the programs)]TJ
+T*
+0 Tw
+(before releasing them to the public.)Tj
+/TT4 1 Tf
+-1 -2.4 TD
+0.25 Tw
+[(3. INTERA)30(CTIVE )250(USE)]TJ
+/TT6 1 Tf
+3.5 -3.6 TD
+0.0096 Tw
+[(The UNIX shell is the command language for UNIX|ST)93(A)111(T)111( )222.6(.)-509.6(Using the standard input and output in)]TJ
+-2.5 -1.2 TD
+0.0432 Tw
+[(the programs allo)25(ws joining them together with pipelines, and the shell pro)15(vides the command language)]TJ
+T*
+0.0374 Tw
+[(to do it.)-537.5(Using the shell is adv)25(antageous because it sa)20(v)15(e)0(s)-287.5(analysts learning time.)-537.4(If analysts are f)10(amiliar)]TJ
+T*
+0.0652 Tw
+[(with the shell and some UNIX programs lik)10(e)]TJ
+/TT4 1 Tf
+18.7305 0 TD
+0 Tw
+(ed)Tj
+/TT6 1 Tf
+0.9438 0 TD
+(,)Tj
+/TT4 1 Tf
+0.5653 0 TD
+(sort)Tj
+/TT6 1 Tf
+1.5562 0 TD
+(,)Tj
+/TT4 1 Tf
+0.5653 0 TD
+(mv)Tj
+/TT6 1 Tf
+1.166 0 TD
+(,)Tj
+/TT4 1 Tf
+0.5653 0 TD
+(rm)Tj
+/TT6 1 Tf
+1.1113 0 TD
+0.0653 Tw
+[(,)-315.3(and others, then the)15(y)-315.3(will be on f)10(amiliar)]TJ
+-25.2037 -1.2 TD
+0.0269 Tw
+[(ground. )-250(If)-276.9(not, the)15(y)-276.9(can be introduced to these utilities in a f)10(amiliar conte)15(xt, and the)15(y)-276.9(will be able to use)]TJ
+T*
+0.0824 Tw
+[(this kno)25(wledge in other conte)15(xts. )-250(The)-332.4(main point of ha)20(ving all transformation and analysis routines as)]TJ
+T*
+0.0091 Tw
+[(stand alone programs and the shell as the command language is that the)15(y)-259.1(can be used with UNIX utilities)]TJ
+T*
+0.063 Tw
+[(by an)15(yone f)10(amiliar with UNIX.)-563(The opposite is also true: some of the transformation routines are used)]TJ
+T*
+0 Tw
+[(in conte)15(xts other than data analysis.)]TJ
+2.5 -1.8 TD
+0.141 Tw
+(The IO program is an intelligent controller and monitor of input and output in the shell and is)Tj
+-2.5 -1.2 TD
+0.2381 Tw
+[(based on Don Normaní)55(s)-488.2(notions about )]TJ
+/TT7 1 Tf
+17.0385 0 TD
+0 Tw
+(ﬂ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.2382 Tw
+[(o)25(w)-488.2(of)-488.2(data through pipelines and the need to monitor it.)]TJ
+-17.5946 -1.2 TD
+0.079 Tw
+[(Monitoring the progress of programs is important if comple)15(x)-329.1(calculations are being performed because)]TJ
+T*
+0.0744 Tw
+[(the)15(y)-324.4(can tak)10(e)-324.4(a)-324.4(long time, sometimes se)25(v)15(eral minutes.)-574.5(IO allo)25(ws an analyst to get feedback about ho)25(w)]TJ
+T*
+0.0266 Tw
+(much of a source )Tj
+/TT7 1 Tf
+7.2148 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0265 Tw
+[(le has been e)15(xhausted, or ho)25(w)-276.6(man)15(y)-276.6(blocks of data ha)20(v)15(e)15( )-15.1(passed through a pipe.)-526.5(W)40(ith)]TJ
+-7.771 -1.2 TD
+0.0402 Tw
+[(a)-290.1(comple)15(x)-290.1(pipeline of transformations, an irritating error is to for)18(get to specify an input )]TJ
+/TT7 1 Tf
+35.6709 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0402 Tw
+[(le.)-540.2(Besides IO)]TJ
+/TT4 1 Tf
+-36.227 -1.2 TD
+0 Tw
+(not)Tj
+/TT6 1 Tf
+1.5348 0 TD
+0.0069 Tw
+[(gi)25(ving an)15(y)-257(feedback of progress, most of the UNIX|ST)93(A)111(T)111( )-111(programs inform the analyst when no input)]TJ
+-1.5348 -1.2 TD
+0.0875 Tw
+(redirection is speci)Tj
+/TT7 1 Tf
+7.7277 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0875 Tw
+[(ed and data are to be read from the terminal k)10(e)15(yboard. )-250.1(The)-337.6(programs assume that)]TJ
+-8.2839 -1.2 TD
+0.3005 Tw
+[(data entry from the k)10(e)15(yboard is the e)15(xception rather than the rule.)-800.5(IO is also a safety minded)]TJ
+T*
+0.0941 Tw
+[(replacement for input and output redirection because it does not allo)25(w)-344.2(analysts to accidently o)15(v)15(erwrite)]TJ
+T*
+0 Tw
+(the contents of )Tj
+/TT7 1 Tf
+6.1372 0 TD
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+(les.)Tj
+-4.1934 -1.8 TD
+0.0187 Tw
+[(UNIX|ST)93(A)111(T)111( )-111(assumes that user ef)]TJ
+/TT7 1 Tf
+13.3209 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0187 Tw
+[(cienc)15(y)-268.7(i)0(s)-268.7(more v)25(aluable than computer ef)]TJ
+/TT7 1 Tf
+16.5404 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0187 Tw
+[(cienc)15(y)65(.)65( )-315(The cost paid)]TJ
+-33.4736 -1.2 TD
+0.083 Tw
+[(by ha)20(ving a slo)25(w)-333(algorithm \(perhaps because a free-format Ascii data )]TJ
+/TT7 1 Tf
+28.9415 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5561 0 TD
+0.0831 Tw
+[(le is being processed\) or lar)18(ger)]TJ
+-29.4976 -1.2 TD
+0.1223 Tw
+(than necessary data )Tj
+/TT7 1 Tf
+8.3908 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.1222 Tw
+[(les \(because the)15(y)-372.3(are self documenting\) is easy to compute.)-622.2(The cost in w)10(asted)]TJ
+-8.947 -1.2 TD
+0.1263 Tw
+(human resources because of increased command speci)Tj
+/TT7 1 Tf
+22.5264 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.1263 Tw
+(cation time, increased probability of error and)Tj
+-23.0825 -1.2 TD
+0.0024 Tw
+(increased correction time, and the high cost of undetected errors is more dif)Tj
+/TT7 1 Tf
+30.2426 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0023 Tw
+[(cult. )-250(Rather)-252.3(than count time)]TJ
+-30.7987 -1.2 TD
+0.2572 Tw
+(for a program to run, it is more reasonable to count the time an analyst spends constructing the)Tj
+T*
+0.0159 Tw
+[(commands to run the program and interpret the results.)-515.9(These ideas are most e)25(vident in the design of the)]TJ
+T*
+0.0958 Tw
+[(ANO)50(V)135(A)135( )-135(program, which remo)15(v)15(e)0(s)-345.8(a)0(s)-345.8(man)15(y)-345.8(time consuming and error prone tasks as possible from the)]TJ
+T*
+0 Tw
+(analyst.)Tj
+/TT4 1 Tf
+-1 -2.4 TD
+[(4. )-250(COMP)90(ARISON WITH S)]TJ
+/TT6 1 Tf
+3.5 -3.6 TD
+0.0283 Tw
+[(I)-278.4(a)0(m)-278.4(often ask)10(ed to compare UNIX|ST)93(A)111(T)111( )-111.1(to)-278.4(the S data analysis system, de)25(v)15(eloped at Bell Labs by)]TJ
+-2.5 -1.2 TD
+0.0708 Tw
+[(Rick Beck)10(er and John Chambers.)-570.8(UNIX|ST)93(A)111(T)111( )-111(is)-320.9(entirely independent of S and w)10(as de)25(v)15(eloped without)]TJ
+T*
+0.1158 Tw
+[(its kno)25(wledge. )-250.1(The)-365.9(major dif)25(ference is that UNIX|ST)93(A)111(T)111( )-111.1(w)10(as de)25(v)15(eloped for w)10(orking with the sorts of)]TJ
+T*
+0.2635 Tw
+[(e)15(xperimental psychological data we in our lab at UCSD were accustomed to using, while S w)10(a)0(s)]TJ
+T*
+0.07 Tw
+[(de)25(v)15(eloped as a general data analysis system, and so of)25(fers a more comprehensi)25(v)15(e)15( )-15(set of functions.)-570(The)]TJ
+T*
+0 Tw
+[(philosophies of design of the tw)10(o)-250(systems are similar in some w)10(ays, and v)15(ery dif)25(ferent in others.)]TJ
+2.5 -1.8 TD
+0.0909 Tw
+[(UNIX|ST)93(A)111(T)111( )-111(is)-340.9(a)-340.9(set of programs that are)]TJ
+/TT4 1 Tf
+17.2747 0 TD
+0 Tw
+(added)Tj
+/TT6 1 Tf
+2.7847 0 TD
+0.0909 Tw
+[(to the e)15(xisting set of UNIX programs.)-591(The)15(y)-341(all)]TJ
+-22.5594 -1.2 TD
+0.0484 Tw
+(can read and write using pipes, and so can be used in conjunction with most other UNIX utilities, using)Tj
+T*
+0.0413 Tw
+[(the f)10(acilities pro)15(vided by the UNIX shell.)-541.3(F)15(o)0(r)-291.3(e)15(xample, if you w)10(anted to sort the data in a data )]TJ
+/TT7 1 Tf
+38.8759 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0413 Tw
+(le, you)Tj
+-39.4321 -1.2 TD
+0.013 Tw
+[(w)10(ould use the UNIX)]TJ
+/TT4 1 Tf
+8.5962 0 TD
+0 Tw
+(sort)Tj
+/TT6 1 Tf
+1.8192 0 TD
+0.013 Tw
+[(program, not one pro)15(vided by UNIX|ST)93(A)111(T)111( )226(.)-513(Or if you w)10(anted graphical output,)]TJ
+-10.4154 -1.2 TD
+0.0195 Tw
+[(you w)10(ould use the standard UNIX)]TJ
+/TT4 1 Tf
+14.0494 0 TD
+0 Tw
+(plot)Tj
+/TT6 1 Tf
+1.8253 0 TD
+(and)Tj
+/TT4 1 Tf
+1.7134 0 TD
+[(gr)15(aph)]TJ
+/TT6 1 Tf
+2.6438 0 TD
+0.0196 Tw
+(programs \(though these could bene)Tj
+/TT7 1 Tf
+14.1302 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0196 Tw
+[(t by ha)20(ving a high)]TJ
+ET
+endstream
+endobj
+15 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT4 5 0 R
+/TT6 6 0 R
+/TT7 7 0 R
+>>
+/ExtGState <<
+/GS1 8 0 R
+>>
+>>
+endobj
+17 0 obj
+<<
+/Length 6234
+>>
+stream
+BT
+/TT6 1 Tf
+10 0 0 10 277.006 744 Tm
+0 g
+/GS1 gs
+0.25 Tc
+0 Tw
+(-4-)Tj
+-19.767 -4.8 TD
+-0.0001 Tc
+0.1895 Tw
+[(le)24.9(v)14.9(e)-0.1(l)-439.6(front end\).)-689.6(One reason why)-439.6(i)-0.1(t)-439.5(i)-0.1(s)-439.5(possible to use UNIX utilities is that UNIX|ST)92.9(A)110.9(T)110.9( )-111(programs)]TJ
+0 -1.2 TD
+0 Tc
+0.1934 Tw
+(assume a simple Ascii format )Tj
+/TT7 1 Tf
+13.0476 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.1934 Tw
+(le with data separated by white space \(spaces, tabs, and sometimes)Tj
+-13.6037 -1.2 TD
+0 Tw
+[(ne)25(wlines\).)]TJ
+2.5 -1.8 TD
+0.1356 Tw
+[(S)-385.6(i)0(s)-385.6(a)-385.6(special en)40(vironment for doing data analysis separated from the UNIX en)40(vironment. )-249.9(The)]TJ
+-2.5 -1.2 TD
+0.1912 Tw
+[(programs use a special data format so, in general, the)15(y)-441.2(can not be used in conjunction with UNIX)]TJ
+T*
+0.0048 Tw
+[(utilities. )-250.1(In)-254.9(general, it is not possible to use some standard UNIX utility with S data sets because the data)]TJ
+T*
+0.0664 Tw
+[(ha)20(v)15(e)15( )-15(such a special format.)-566.4(One result of this is that S needs to ha)20(v)15(e)15( )-15.1(its o)25(wn v)15(ersions of man)15(y)-316.5(utilities)]TJ
+T*
+0.0523 Tw
+[(already e)15(xisting in UNIX.)-552.3(Another is that is is, in general, dif)]TJ
+/TT7 1 Tf
+25.2799 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.0522 Tw
+(cult at best to use S functions outside of)Tj
+-25.8361 -1.2 TD
+0 Tw
+[(the S en)40(vironment.)]TJ
+2.5 -1.8 TD
+0.0918 Tw
+[(Both systems are e)15(xtensible, though I suspect adding to a set of UNIX programs is easier)55(.)-591.9(Both)]TJ
+-2.5 -1.2 TD
+0.1789 Tw
+[(systems of)25(fer programming capabilities: S has its o)25(wn macro de)]TJ
+/TT7 1 Tf
+27.1935 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.1789 Tw
+[(nition language while UNIX|ST)93(A)111(T)]TJ
+-27.7497 -1.2 TD
+0.1189 Tw
+[(depends on the shellí)55(s)-368.9(programming language.)-618.9(Using one o)15(v)15(e)0(r)-368.9(the other depends on the needs of the)]TJ
+T*
+0.0899 Tw
+[(analyst; certainly)65(,)-340(S)0(í)55(s)55( )-55.1(set of statistical functions is much lar)18(ger)55(.)-589.9(Concerning ef)]TJ
+/TT7 1 Tf
+32.2629 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.1549 Tw
+[(cienc)15(y)65(,)65( my)-339.9(impression,)]TJ
+-32.8191 -1.2 TD
+0.0538 Tw
+[(without benchmarks or controlled data, is that the UNIX|ST)93(A)111(T)111( )-111.1(programs are f)10(aster and easier to use for)]TJ
+T*
+0.0113 Tw
+[(small to medium data sets, especially for one shot analyses.)-511.3(F)15(o)0(r)-261.3(lar)18(ger data sets, Sí)55(s)-261.3(matrix manipulation)]TJ
+T*
+0.0804 Tw
+[(primiti)25(v)15(e)0(s)-330.4(seem to gi)25(v)15(e)15( )-15(it)-330.4(an)-330.4(adv)25(antage that mak)10(es up for its slo)25(w)-330.5(startup time.)-580.5(Concerning portability)]TJ
+T*
+0.0149 Tw
+[(and related areas, the UNIX|ST)93(A)111(T)111( )-111(programs use 300 blocks for the C source )]TJ
+/TT7 1 Tf
+31.0141 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5561 0 TD
+0.0149 Tw
+(les, and 500 blocks for the)Tj
+-31.5703 -1.2 TD
+0.0268 Tw
+[(e)15(x)15(ecutables, each program a)20(v)15(eraging 14000 bytes.)-526.9(I)-276.9(a)0(m)-276.9(unsure about the requirements for S, b)20(ut I kno)25(w)]TJ
+T*
+0.217 Tw
+[(them to be much lar)18(ger)55(.)-717.1(The UNIX|ST)93(A)111(T)111( )-111.1(programs are running on UNIX systems dating back to)]TJ
+T*
+0.0053 Tw
+[(V)111(ersion 6 UNIX \(of course, all subsequent systems can run them\), and run on computers as small as PDP)]TJ
+T*
+0 Tw
+[(11/23í)55(s)-250(without problem.)]TJ
+/TT4 1 Tf
+-1 -2.4 TD
+0.25 Tw
+[(5. FURTHER)-250(INFORMA)37(TION)]TJ
+0 -3.6 TD
+[(5.1 A)55(vailability)]TJ
+/TT6 1 Tf
+4.5 -3.6 TD
+0.0058 Tw
+[(The UNIX|ST)93(A)111(T)111( )-111(programs ha)20(v)15(e)15( )-15(been released in the public domain.)-505.8(In general, the source )]TJ
+/TT7 1 Tf
+36.7797 0 TD
+0 Tw
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+(les,)Tj
+-39.8358 -1.2 TD
+0.0816 Tw
+[(documentation, and e)15(xamples, are distrib)20(uted at cost to an)15(y)-331.6(interested parties with the understanding)]TJ
+T*
+0 Tw
+(that:)Tj
+1.25 -1.8 TD
+-0.0001 Tc
+0.0001 Tw
+[(1. )-750(The)-250.1(programs are not to be sold for material gain.)]TJ
+T*
+0 Tc
+0.04 Tw
+[(2. )-710(The)-290.1(softw)10(are, though tested o)15(v)15(e)0(r)-290.1(s)0(e)25(v)25( )280(eral years, is not guaranteed in an)15(y)-290(w)10(ay)65(,)-290(and certainly not)]TJ
+1.75 -1.2 TD
+0 Tw
+(supported.)Tj
+-1.75 -1.8 TD
+[(3. )-750(UNIX|ST)93(A)111(T)111( )-111(is)-250(not a product, nor supported by Bell Laboratories.)]TJ
+/TT4 1 Tf
+-3.25 -1.8 TD
+0.25 Tw
+[(5.2 Other)-250(UNIX|ST)50(A)37(T)37( )213(P)80(aper)10(s)]TJ
+/TT6 1 Tf
+3.25 -3.6 TD
+0.2129 Tw
+[(1. )-537.1(Data)-462.9(analysis programs for the UNIX operating system.)]TJ
+/TT4 1 Tf
+26.2808 0 TD
+[(Behavior Resear)37(c)15(h)15( )-15(Methods and)]TJ
+-24.5308 -1.2 TD
+0 Tw
+(Instrumentation)Tj
+/TT6 1 Tf
+6.3887 0 TD
+[(,)-250(1980,)]TJ
+/TT2 1 Tf
+3 0 TD
+(12)Tj
+/TT6 1 Tf
+1 0 TD
+[(,)-250(554-558.)]TJ
+-12.1387 -1.8 TD
+0.0427 Tw
+[(2. )-707.3(An)-292.7(e)15(xample of cooperating compact data analysis programs.)]TJ
+/TT4 1 Tf
+26.7904 0 TD
+0.0426 Tw
+[(Behavior Resear)37(c)15(h)15( )-15(Methods and)]TJ
+-25.0404 -1.2 TD
+0 Tw
+(Instrumentation)Tj
+/TT6 1 Tf
+6.3887 0 TD
+[(,)-321.3(1981,)]TJ
+/TT2 1 Tf
+3.1426 0 TD
+(13)Tj
+/TT6 1 Tf
+1 0 TD
+0.0714 Tw
+[(,)-321.4(290-293. )-250(Presented)-321.4(at the National Conference on the Use of On-)]TJ
+-10.5313 -1.2 TD
+0 Tw
+[(Line Computers in Psychology)65(,)-250(N)0(o)15(v)15(ember 12, 1980, St. Louis, Missouri.)]TJ
+-1.75 -1.8 TD
+0.3109 Tw
+[(3. )-439.1(Data)-560.9(analysis in the UNIX en)40(vironment: T)70(echniques for automated e)15(xperimental design)]TJ
+1.75 -1.2 TD
+0 Tw
+(speci)Tj
+/TT7 1 Tf
+2.0547 0 TD
+(ﬁ)Tj
+/TT6 1 Tf
+0.5562 0 TD
+0.3167 Tw
+[(cation. )-250(Presented)-566.7(at the XIV Annual Conference on the Interf)10(ace, July 7, 1982,)]TJ
+-2.6108 -1.2 TD
+0.1109 Tw
+[(Rensselaer Polytechnic Institute, T)35(r)0(o)10(y)65(,)65( )-65(Ne)25(w)25( )-25(Y)110(ork. )-250(Proceedings)-360.9(to be published by Springer)20(-)]TJ
+T*
+0 Tw
+[(V)111(erlag.)]TJ
+-1.75 -1.8 TD
+0.2332 Tw
+[(4. )-516.8(UNIX|ST)93(A)111(T)111( )422.2(:)-483.1(Compact data analysis programs for UNIX.)-733.2(Presented at the 1982 Summer)]TJ
+1.75 -1.2 TD
+0.1271 Tw
+[(USENIX Conference, July 9, 1982, Boston, Massachusetts.)-627.1(Proceedings to be published by)]TJ
+T*
+0 Tw
+(USENIX.)Tj
+ET
+endstream
+endobj
+18 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+/TT6 6 0 R
+/TT7 7 0 R
+>>
+/ExtGState <<
+/GS1 8 0 R
+>>
+>>
+endobj
+20 0 obj
+<<
+/Length 74
+>>
+stream
+BT
+/TT6 1 Tf
+10 0 0 10 277.006 744 Tm
+0 g
+/GS1 gs
+0.25 Tc
+0 Tw
+(-5-)Tj
+ET
+endstream
+endobj
+21 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT6 6 0 R
+>>
+/ExtGState <<
+/GS1 8 0 R
+>>
+>>
+endobj
+23 0 obj
+<<
+/Length 1609
+>>
+stream
+BT
+/TT6 1 Tf
+10 0 0 10 259.226 696 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(CONTENTS)Tj
+-18.989 -4.8 TD
+[(1.)-500(INTR)40(ODUCTION)-1185.3(.................................................................................................................)]TJ
+38.2 0 TD
+0.75 Tw
+(.............. 1)Tj
+-38.2 -1.8 TD
+0 Tw
+[(2.)-500(HIST)18(OR)65(Y)-1199.5(......................................................................................................................)]TJ
+36.2 0 TD
+0.75 Tw
+(...................... 1)Tj
+-36.2 -1.8 TD
+0 Tw
+[(3.)-500(INTERA)40(CTIVE USE)-1241(..............................................................................................................)]TJ
+38.7 0 TD
+0.75 Tw
+(............ 3)Tj
+-38.7 -1.8 TD
+0 Tw
+[(4.)-500(COMP)92(ARISON WITH S)-1068.9(............................................................................................................)]TJ
+39.45 0 TD
+0.75 Tw
+(......... 3)Tj
+-39.45 -1.8 TD
+0 Tw
+[(5.)-500(FUR)60(THER INFORMA)111(TION)-1064.8(..........................................................................................................)]TJ
+40.45 0 TD
+0.75 Tw
+(..... 4)Tj
+-39.2 -1.2 TD
+-0.201 Tw
+[(5.1)-500(A)74(v)74( ailability)-1022.1(...............................................................................................................)]TJ
+35.2 0 TD
+0.75 Tw
+(..................... 4)Tj
+-35.2 -1.2 TD
+0 Tw
+[(5.2)-500(Other UNIX|ST)93(A)111(T)111( )-111(P)15(apers)-1026.4(......................................................................................................)]TJ
+38.7 0 TD
+0.75 Tw
+(....... 4)Tj
+-18.489 -52.8 TD
+0 Tw
+(i)Tj
+ET
+endstream
+endobj
+24 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT6 6 0 R
+>>
+/ExtGState <<
+/GS1 8 0 R
+>>
+>>
+endobj
+26 0 obj
+<<
+/Length 227
+>>
+stream
+BT
+/TT2 1 Tf
+12 0 0 12 178.626 698.63 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+[(Notes on the History and Design of UNIX|ST)90(A)95(T)]TJ
+/TT4 1 Tf
+11 0 0 11 269.156 679.63 Tm
+[(Gary P)80(erlman)]TJ
+/TT6 1 Tf
+10 0 0 10 282.556 24 Tm
+(ii)Tj
+ET
+endstream
+endobj
+27 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+/TT6 6 0 R
+>>
+/ExtGState <<
+/GS1 8 0 R
+>>
+>>
+endobj
+8 0 obj
+<<
+/Type /ExtGState
+/SA false
+/SM 0.02
+/OP false
+/op false
+/OPM 1
+/BG2 /Default
+/UCR2 /Default
+/HT /Default
+/TR2 /Default
+>>
+endobj
+28 0 obj
+<<
+/Type /FontDescriptor
+/Ascent 750
+/CapHeight 676
+/Descent -250
+/Flags 262178
+/FontBBox [-168 -218 1000 935]
+/FontName /Times-Bold
+/ItalicAngle 0
+/StemV 133
+/XHeight 461
+/StemH 139
+>>
+endobj
+29 0 obj
+<<
+/Type /FontDescriptor
+/Ascent 750
+/CapHeight 653
+/Descent -250
+/Flags 98
+/FontBBox [-169 -217 1010 883]
+/FontName /Times-Italic
+/ItalicAngle -15
+/StemV 76
+/XHeight 441
+/StemH 76
+>>
+endobj
+30 0 obj
+<<
+/Type /FontDescriptor
+/Ascent 750
+/CapHeight 662
+/Descent -250
+/Flags 34
+/FontBBox [-168 -218 1000 898]
+/FontName /Times-Roman
+/ItalicAngle 0
+/StemV 84
+/XHeight 450
+/StemH 84
+>>
+endobj
+31 0 obj
+<<
+/Type /FontDescriptor
+/Ascent 750
+/CapHeight 662
+/Descent -250
+/Flags 34
+/FontBBox [-168 -218 1000 898]
+/FontName /Times-Roman
+/ItalicAngle 0
+/StemV 84
+/XHeight 450
+/StemH 84
+>>
+endobj
+4 0 obj
+<<
+/Type /Font
+/Subtype /TrueType
+/FirstChar 32
+/LastChar 124
+/Widths [250 0 0 0 0 0 0 0 0 0 0 0 0 0 250 0 
+0 500 500 500 0 0 0 0 0 0 0 0 0 0 0 0 
+0 722 0 0 722 0 0 0 778 389 0 0 0 0 722 0 
+0 0 0 556 667 722 0 0 722 0 0 0 0 0 0 0 
+0 500 556 444 556 444 333 500 556 278 0 0 278 833 556 500 
+556 0 444 389 333 556 500 722 500 500 0 0 220 ]
+/Encoding /WinAnsiEncoding
+/BaseFont /Times-Bold
+/FontDescriptor 28 0 R
+>>
+endobj
+5 0 obj
+<<
+/Type /Font
+/Subtype /TrueType
+/FirstChar 32
+/LastChar 124
+/Widths [250 0 0 0 0 0 0 0 0 0 0 0 0 0 250 0 
+0 500 500 500 500 500 0 0 0 0 0 0 0 0 0 0 
+0 611 611 667 722 611 611 722 722 333 0 0 0 833 667 722 
+611 0 611 500 556 722 611 833 611 556 0 0 0 0 0 0 
+0 500 500 444 500 444 0 500 500 278 0 444 278 722 500 500 
+500 0 389 389 278 500 444 667 444 444 0 0 275 ]
+/Encoding /WinAnsiEncoding
+/BaseFont /Times-Italic
+/FontDescriptor 29 0 R
+>>
+endobj
+6 0 obj
+<<
+/Type /Font
+/Subtype /TrueType
+/FirstChar 32
+/LastChar 146
+/Widths [250 0 408 0 500 0 0 0 333 333 500 0 250 333 250 278 
+500 500 500 500 500 500 500 500 500 500 278 278 0 0 0 0 
+0 722 667 667 722 611 556 722 722 333 389 722 611 889 722 722 
+556 0 667 556 611 722 722 944 722 722 0 0 0 0 0 0 
+0 444 500 444 500 444 333 500 500 278 278 500 278 778 500 500 
+500 500 333 389 278 500 500 722 500 500 444 0 200 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 333 ]
+/Encoding /WinAnsiEncoding
+/BaseFont /Times-Roman
+/FontDescriptor 30 0 R
+>>
+endobj
+7 0 obj
+<<
+/Type /Font
+/Subtype /TrueType
+/FirstChar 222
+/LastChar 223
+/Widths [556 556 ]
+/Encoding /MacRomanEncoding
+/BaseFont /Times-Roman
+/FontDescriptor 31 0 R
+>>
+endobj
+1 0 obj
+<<
+/Type /Page
+/Parent 9 0 R
+/Resources 3 0 R
+/Contents 2 0 R
+>>
+endobj
+10 0 obj
+<<
+/Type /Page
+/Parent 9 0 R
+/Resources 12 0 R
+/Contents 11 0 R
+>>
+endobj
+13 0 obj
+<<
+/Type /Page
+/Parent 9 0 R
+/Resources 15 0 R
+/Contents 14 0 R
+>>
+endobj
+16 0 obj
+<<
+/Type /Page
+/Parent 9 0 R
+/Resources 18 0 R
+/Contents 17 0 R
+>>
+endobj
+19 0 obj
+<<
+/Type /Page
+/Parent 9 0 R
+/Resources 21 0 R
+/Contents 20 0 R
+>>
+endobj
+22 0 obj
+<<
+/Type /Page
+/Parent 9 0 R
+/Resources 24 0 R
+/Contents 23 0 R
+>>
+endobj
+25 0 obj
+<<
+/Type /Page
+/Parent 9 0 R
+/Resources 27 0 R
+/Contents 26 0 R
+>>
+endobj
+32 0 obj
+<<
+/S /D
+>>
+endobj
+33 0 obj
+<<
+/Nums [0 32 0 R ]
+>>
+endobj
+9 0 obj
+<<
+/Type /Pages
+/Kids [1 0 R 10 0 R 13 0 R 16 0 R 19 0 R 22 0 R 25 0 R]
+/Count 7
+/MediaBox [0 0 612 792]
+>>
+endobj
+34 0 obj
+<<
+/CreationDate (D:20200117102506-05'00')
+/ModDate (D:20200117102506-05'00')
+/Producer (PSNormalizer.framework)
+>>
+endobj
+35 0 obj
+<<
+/Type /Catalog
+/Pages 9 0 R
+/PageLabels 33 0 R
+>>
+endobj
+xref
+0 36
+0000000000 65535 f 
+0000035550 00000 n 
+0000000016 00000 n 
+0000006711 00000 n 
+0000033941 00000 n 
+0000034369 00000 n 
+0000034827 00000 n 
+0000035376 00000 n 
+0000033005 00000 n 
+0000036196 00000 n 
+0000035630 00000 n 
+0000006839 00000 n 
+0000015708 00000 n 
+0000035713 00000 n 
+0000015837 00000 n 
+0000024095 00000 n 
+0000035796 00000 n 
+0000024213 00000 n 
+0000030500 00000 n 
+0000035879 00000 n 
+0000030629 00000 n 
+0000030754 00000 n 
+0000035962 00000 n 
+0000030850 00000 n 
+0000032512 00000 n 
+0000036045 00000 n 
+0000032608 00000 n 
+0000032887 00000 n 
+0000033145 00000 n 
+0000033347 00000 n 
+0000033547 00000 n 
+0000033744 00000 n 
+0000036128 00000 n 
+0000036156 00000 n 
+0000036319 00000 n 
+0000036451 00000 n 
+trailer
+<<
+/Size 36
+/Root 35 0 R
+/Info 34 0 R
+/ID [<f95e0db0d18867a5f1bdd7e3e67120d8><f95e0db0d18867a5f1bdd7e3e67120d8>]
+>>
+startxref
+36520
+%%EOF
+1 0 obj
+<< /Resources 3 0 R /Type /Page /Contents 2 0 R /Rotate 0 /Parent 9 0 R >>
+endobj
+10 0 obj
+<< /Resources 12 0 R /Type /Page /Contents 11 0 R /Rotate 0 /Parent 9 0 R
+>>
+endobj
+13 0 obj
+<< /Resources 15 0 R /Type /Page /Contents 14 0 R /Rotate 0 /Parent 9 0 R
+>>
+endobj
+16 0 obj
+<< /Resources 18 0 R /Type /Page /Contents 17 0 R /Rotate 0 /Parent 9 0 R
+>>
+endobj
+19 0 obj
+<< /Resources 21 0 R /Type /Page /Contents 20 0 R /Rotate 0 /Parent 9 0 R
+>>
+endobj
+22 0 obj
+<< /Resources 24 0 R /Type /Page /Contents 23 0 R /Rotate 0 /Parent 9 0 R
+>>
+endobj
+25 0 obj
+<< /Resources 27 0 R /Type /Page /Contents 26 0 R /Rotate 0 /Parent 9 0 R
+>>
+endobj
+34 0 obj
+<< /ModDate (D:20200117152515Z00'00') /Producer (macOS Version 10.15.2 \(Build 19C57\) Quartz PDFContext, AppendMode 1.1)
+/CreationDate (D:20200117102506-05'00') >>
+endobj
+xref
+0 2
+0000000000 65535 f 
+0000037396 00000 n 
+10 1
+0000037486 00000 n 
+13 1
+0000037579 00000 n 
+16 1
+0000037672 00000 n 
+19 1
+0000037765 00000 n 
+22 1
+0000037858 00000 n 
+25 1
+0000037951 00000 n 
+34 1
+0000038044 00000 n 
+trailer
+<< /ID [<F95E0DB0D18867A5F1BDD7E3E67120D8><8F1559B1C7568D1BFBB86E7DF7F3F07A> ] /Root 35 0 R /Size 36 /Prev 36520 /Info 34 0 R >> 
+startxref
+38225
+%%EOF
