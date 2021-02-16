@@ -41,7 +41,7 @@ PGM(desc, Descriptive Statistics)
 */
 
 #define	MAXBINS		10000	/* maximum number of bins for tables	      */
-#define	MAXPOINTS	100000	/* maximum number of input points if storing  */
+#define	MAXPOINTS	1000000	/* maximum number of input points if storing  */
 /*			    OPTION FLAGS				      */
 typedef	int 	boolean;	/* no boolean tpe in C			      */
 #define	TRUE	1
@@ -79,16 +79,20 @@ double	intwidth;		/* width of interval of freqency count bins   */
 double	minimum;		/* minimum allowable value of x		      */
 double	maximum;		/* maximum allowable value of x		      */
 
-main (argc, argv) int argc; char *argv[];
+int bindex (xval) float xval;
 	{
-	Argv0 = argv[0];
-	getoptions (argc, argv);
-	input ();
-	if (stats) printstats ();
-	if (table) printtable ();
+	int 	answer;
+	float	findex;
+	if (xval == minimum) return (0);
+	findex = (xval - minimum)/intwidth;
+	if (floor (findex) == findex) answer = findex - 1.0;
+	else answer = findex;
+	if (answer >= MAXBINS)
+		ERRMSG1 (bin[%d] is out of range, answer)
+	return (answer);
 	}
 
-getoptions (argc, argv) int argc; char **argv;
+void getoptions (argc, argv) int argc; char **argv;
 	{
 	char	optionline[BUFSIZ];
 	char	*options = optionline;
@@ -127,7 +131,7 @@ getoptions (argc, argv) int argc; char **argv;
 	else if (setminimum || setmaximum) stats = TRUE;
 	} /* ends getoptions */
 
-input ()
+void input ()
 	{
 	double	x;			/* each datum read in here	      */
 	double	x2;			/* square of x			      */
@@ -168,7 +172,7 @@ input ()
 		ERRDATA
 	}
 
-printstats ()
+void printstats ()
 	{
 	double	pof ();			/* probability of F ratio	      */
 	double	percentile ();		/* percentile function		      */
@@ -322,7 +326,7 @@ printstats ()
 int fltcmp (f1, f2) float *f1, *f2;
 	{ if (*f1 < *f2) return (-1); if (*f1 == *f2) return (0); return (1); }
 
-printtable ()
+void printtable ()
 	{
 	register int point;		/* looping variable		      */
 	register int i;			/* looping variable		      */
@@ -385,22 +389,7 @@ printtable ()
 		}
 	}
 
-int
-bindex (xval) float xval;
-	{
-	int 	answer;
-	float	findex;
-	if (xval == minimum) return (0);
-	findex = (xval - minimum)/intwidth;
-	if (floor (findex) == findex) answer = findex - 1.0;
-	else answer = findex;
-	if (answer >= MAXBINS)
-		ERRMSG1 (bin[%d] is out of range, answer)
-	return (answer);
-	}
-
-double
-percentile (perc, v, n) float v[]; int perc, n;
+double percentile (perc, v, n) float v[]; int perc, n;
 	{
 	/*returns the perc percentile of v[n]*/
 	/*assumes v is sorted*/
@@ -413,3 +402,13 @@ percentile (perc, v, n) float v[]; int perc, n;
 	return (v[pindex+1] * (findex - pindex) +
 		 v[pindex] * (1.0 - findex + pindex));
 	}
+
+int main (argc, argv) int argc; char *argv[];
+	{
+	Argv0 = argv[0];
+	getoptions (argc, argv);
+	input ();
+	if (stats) printstats ();
+	if (table) printtable ();
+	}
+
