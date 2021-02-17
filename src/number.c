@@ -4,7 +4,7 @@
 /* returns 1 for an int, 2 for a real, 0 for non-numbers */
 #include <stdio.h>
 #include <ctype.h>
-number (string) char *string;
+int number (char* string) 
 	{
 	char	answer = 1;
 	while (isspace (*string)) string++;

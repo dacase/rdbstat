@@ -41,7 +41,7 @@ PGM(desc, Descriptive Statistics)
 */
 
 #define	MAXBINS		10000	/* maximum number of bins for tables	      */
-#define	MAXPOINTS	1000000	/* maximum number of input points if storing  */
+#define	MAXPOINTS	10000000	/* maximum number of input points if storing  */
 /*			    OPTION FLAGS				      */
 typedef	int 	boolean;	/* no boolean tpe in C			      */
 #define	TRUE	1
@@ -79,6 +79,8 @@ double	intwidth;		/* width of interval of freqency count bins   */
 double	minimum;		/* minimum allowable value of x		      */
 double	maximum;		/* maximum allowable value of x		      */
 
+int number( char* );
+
 int bindex (xval) float xval;
 	{
 	int 	answer;
@@ -98,7 +100,7 @@ void getoptions (argc, argv) int argc; char **argv;
 	char	*options = optionline;
 	int 	i;
 	char	c;
-	checkstdin (argv[0]);
+	// checkstdin (argv[0]);
 	for (i = 1; i < argc; i++) strcat (options, argv[i]);
 	if (*options == NULL) stats = storedata = TRUE;
 	else while (*options) switch (*options++)
