@@ -47,22 +47,7 @@ confirm (msg, arg) char *msg; char *arg;
 
 #endif
 
-checkstdin (program)
-char *program;
-	{
-# if 0
-                        /* dac: always assume not a terminal !?!  */
-	struct	sgttyb ttybuf;
-	if (gtty (fileno (stdin), &ttybuf) == 0)
-		{
-		fprintf (stderr,"\007%s: Reading input from terminal:\n", program);
-		return (1);
-		}
-#endif
-	return (0);
-	}
-
-checkargv (target, argv0)
+int checkargv (target, argv0)
 char	*target, *argv0;
 	{
 	int	offset = strlen (argv0) - strlen (target);

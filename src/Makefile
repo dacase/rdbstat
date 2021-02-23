@@ -2,7 +2,7 @@
 #	You will probably want to change this to /usr/bin or something like that
 BIN = ../bin
 #	PROGS is a list of all the programs.  It is used for "make all"
-PROGS = maketrix transpose regress desc vincent pair 
+PROGS = regress desc pair 
 #	CFLAGS is used as the default set of cc compiler options
 CFLAGS = -O
 #	LIBES determines the libraries to append to the cc command
@@ -31,8 +31,8 @@ abut: abut.o number.o
 	gcc $(CFLAGS) -o $(BIN)/abut abut.o number.o
 anova: anova.o strings.o number.o pof.o checkio.o
 	gcc $(CFLAGS) -o $(BIN)/anova anova.o strings.o number.o pof.o checkio.o $(LIBES)
-regress: regress.o strings.o number.o pof.o checkio.o
-	gcc $(CFLAGS) -o $(BIN)/regress regress.o strings.o number.o pof.o checkio.o $(LIBES)
+regress: regress.o strings.o number.o pof.o
+	gcc $(CFLAGS) -o $(BIN)/regress regress.o strings.o number.o pof.o $(LIBES)
 corr:
 	make regress
 	-/bin/ln $(BIN)/regress $(BIN)/corr
@@ -40,8 +40,8 @@ dm: dm.y strings.o number.o checkio.o
 	yacc dm.y
 	/bin/echo "dm: Don't be bothered by shift/reduce conflicts from yacc"
 	gcc $(CFLAGS) -o $(BIN)/dm y.tab.c number.o strings.o checkio.o $(LIBES)
-desc: desc.o pof.o number.o checkio.o
-	gcc $(CFLAGS) -o $(BIN)/desc desc.o number.o pof.o checkio.o $(LIBES)
+desc: desc.o pof.o
+	gcc $(CFLAGS) -o $(BIN)/desc desc.o pof.o $(LIBES)
 vincent: vincent.o
 	gcc $(CFLAGS) -o $(BIN)/vincent vincent.o $(LIBES)
 calc: calc.y
@@ -54,8 +54,8 @@ pof: POF.o pof.o
 dprime: dprime.o number.o ptoz.o strings.o checkio.o
 	gcc $(CFLAGS) -o $(BIN)/dprime dprime.o number.o ptoz.o strings.o checkio.o $(LIBES)
 	/bin/echo "dprime:" $(UNTESTED)
-pair: pair.o number.o pof.o strings.o checkio.o scatterplot.o
-	gcc $(CFLAGS) -o $(BIN)/pair pair.o number.o pof.o strings.o scatterplot.o checkio.o $(LIBES)
+pair: pair.o pof.o scatterplot.o strings.o
+	gcc $(CFLAGS) -o $(BIN)/pair pair.o pof.o scatterplot.o strings.o $(LIBES)
 biplot:
 	make pair
 	-/bin/ln $(BIN)/pair $(BIN)/biplot

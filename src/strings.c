@@ -11,16 +11,8 @@
 #ifndef ESCAPE
 #define	ESCAPE '\\'
 #endif
-fstrings (ioptr, abase, maxstrings, maxchars)
-	FILE	*ioptr;
-	char	*abase;
-	{
-	char	line[BUFSIZ];
 
-	if (fgets (line, BUFSIZ, ioptr) == NULL) return (EOF);
-	return (sstrings (line, abase, maxstrings, maxchars));
-	}
-sstrings (line, abase, maxstrings, maxchars)
+int sstrings (line, abase, maxstrings, maxchars)
 	char	*line;
 	char	*abase;
 	{
@@ -34,7 +26,7 @@ sstrings (line, abase, maxstrings, maxchars)
 		while (*line && !isspace (*line) && nchars<maxchars-1)
 			if ((abase[nchars++] = *line++) == ESCAPE)
 				abase[nchars-1] = *line++;
-		abase[nchars] = NULL;
+		abase[nchars] = '\0';
 		abase += maxchars;
 		while (*line && !isspace (*line)) line++;
 		while (isspace (*line)) line++;
@@ -42,4 +34,14 @@ sstrings (line, abase, maxstrings, maxchars)
 			return (maxstrings + (*line ? 1 : 0));
 		}
 	return (nstrings);
+	}
+
+int fstrings (ioptr, abase, maxstrings, maxchars)
+	FILE	*ioptr;
+	char	*abase;
+	{
+	char	line[BUFSIZ];
+
+	if (fgets (line, BUFSIZ, ioptr) == NULL) return (EOF);
+	return (sstrings (line, abase, maxstrings, maxchars));
 	}

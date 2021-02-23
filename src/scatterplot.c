@@ -14,7 +14,7 @@
 	int	col, row;
 	int 	plot[MAX_PLOT][MAX_PLOT];
 
-scatterplot (x, y, n, plotchar, height, width, border)
+void scatterplot (x, y, n, plotchar, height, width, border)
 float	*x, *y;
 	{
 	double	min_x = *x, min_y = *y;
@@ -68,7 +68,7 @@ float	*x, *y;
 			sprintf (dataline, "%*.3f", width+2, max_x);
 			sprintf (dataline, "%-.3f", min_x);
 			for (col = 0; col < width+2; col++)
-				if (dataline[col] == NULL) dataline[col] = ' ';
+				if (dataline[col] == '\0') dataline[col] = ' ';
 			puts (dataline);
 			}
 		}

@@ -29,5 +29,5 @@ int number (char* string)
 		while (isdigit (*string)) string++;
 		}
 	while (isspace (*string)) string++;
-	return (*string == NULL ? answer : 0);
+	return (*string == '\0' ? answer : 0);
 	}

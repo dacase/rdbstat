@@ -1,8 +1,11 @@
-#include "stdlib.h"
-#include "math.h"
-#include "stdio.h"
-#include "string.h"
-#include "unixstat.h"
+#define	PGM(name,purpose) /* name: purpose */
+#include <stdlib.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <math.h>
+#include <string.h>
+
+char	*Argv0 = "";
 PGM(desc, Descriptive Statistics)
 /* Copyright (c) 1982 Gary Perlman (see Copyright file) */
 
@@ -79,7 +82,33 @@ double	intwidth;		/* width of interval of freqency count bins   */
 double	minimum;		/* minimum allowable value of x		      */
 double	maximum;		/* maximum allowable value of x		      */
 
-int number( char* );
+int number (char* string) 
+	{
+	char	answer = 1;
+	while (isspace (*string)) string++;
+	if (!*string) return (0);
+	if (*string == '-') /* optional plus not allowed by atof */
+		{
+		string++;
+		if (!isdigit (*string) && *string != '.') return (0);
+		}
+	while (isdigit (*string)) string++;
+	if (*string == '.')
+		{
+		answer = 2;
+		string++;
+		}
+	while (isdigit (*string)) string++;
+	if (*string == 'E' || *string == 'e')
+		{
+		answer = 2;
+		string++;
+		if (*string == '+' || *string == '-') string++;
+		while (isdigit (*string)) string++;
+		}
+	while (isspace (*string)) string++;
+	return (strcmp(string,"") ? 0 : answer);
+	}
 
 int bindex (xval) float xval;
 	{
@@ -89,8 +118,10 @@ int bindex (xval) float xval;
 	findex = (xval - minimum)/intwidth;
 	if (floor (findex) == findex) answer = findex - 1.0;
 	else answer = findex;
-	if (answer >= MAXBINS)
-		ERRMSG1 (bin[%d] is out of range, answer)
+	if (answer >= MAXBINS){
+		fprintf( stderr, "bin[%d] is out of range\n", answer);
+        exit(1);
+    }
 	return (answer);
 	}
 
@@ -102,7 +133,7 @@ void getoptions (argc, argv) int argc; char **argv;
 	char	c;
 	// checkstdin (argv[0]);
 	for (i = 1; i < argc; i++) strcat (options, argv[i]);
-	if (*options == NULL) stats = storedata = TRUE;
+	if (*options == '\0') stats = storedata = TRUE;
 	else while (*options) switch (*options++)
 		{
 		case 'c': cumulative = TRUE; break;
@@ -121,8 +152,10 @@ void getoptions (argc, argv) int argc; char **argv;
 		case 't': ftest = stats = TRUE; f_null = atof(options); break;
 		case 'v': variable = storedata = TRUE; break;
 		default:	c = *(options-1);
-				if (c != '.' && c != '-' && c < '0' || c > '9')
-					ERROPT (c)
+				if (c != '.' && c != '-' && c < '0' || c > '9'){
+					fprintf( stderr, "Bad option: %c\n", c);
+                    exit(1);
+                }
 		}
 	if (table)
 		{
@@ -138,22 +171,27 @@ void input ()
 	double	x;			/* each datum read in here	      */
 	double	x2;			/* square of x			      */
 	char	stringx[50];		/* string version of x read in here   */
-	if (scanf ("%s", stringx) != 1)
-		ERRDATA
+	if (scanf ("%s", stringx) != 1){
+       fprintf( stderr, "Not enough (or missing) data\n" );
+       exit(1);
+    }
 	minx = maxx = atof (stringx);;
 	do	{
-		if (!number (stringx))
-			ERRNUM (stringx)
+		if (!number (stringx)){
+			fprintf( stderr, "Non-numeric input: %s\n", stringx);
+            exit(1);
+        }
 		x = atof (stringx);
 		if (setminimum && x < minimum) {undermin++; continue;}
 		if (setmaximum && x > maximum) {overmax++; continue;}
-		if (storedata)
-			if (n == MAXPOINTS)
-			    {
-			    WARNING (too much data for storing)
+		if (storedata){
+			if (n == MAXPOINTS){
+			    // WARNING (too much data for storing)
 			    storedata = FALSE;
-			    }
-			else datax[n] = x;
+			} else {
+                datax[n] = x;
+            }
+        }
 		if (onepass) freq[bindex(x)]++;
 		x2 = x*x;
 		sum += x;
@@ -170,8 +208,10 @@ void input ()
 		if (x < minx) minx = x;
 		n++;
 	} while (scanf ("%s", stringx) > 0);
-	if (n <= 1)
-		ERRDATA
+	if (n <= 1){
+       fprintf( stderr, "Not enough (or missing) data\n" );
+       exit(1);
+    }
 	}
 
 void printstats ()
@@ -189,8 +229,10 @@ void printstats ()
 	double	median;			/* 50th percentile		      */
 	char	*line	=
 	"------------------------------------------------------------";
-	if (var == 0.0)
-		ERRMSG2 (All these %d numbers equal %.4g, n, M)
+	if (var == 0.0){
+        fprintf( stderr, "Variance in input is zero\n" );
+        exit(1);
+    }
 	sk = (s3 - 3.0*M*s2 + 3.0*M2*sum - M2*sum)/(n*var*sd);
 	kt = (s4-4.*M*s3+6.*M2*s2-4.*M2*M*sum+n*M2*M2)/(n*var*var);
 	if (storedata)

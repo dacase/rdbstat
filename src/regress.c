@@ -1,4 +1,12 @@
-#include "unixstat.h"
+#define	PGM(name,purpose) /* name: purpose */
+#include <stdlib.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <math.h>
+#include <string.h>
+
+char	*Argv0 = "";
+
 PGM(regress, Multiple Linear Regression)
 /* Copyright (c) 1982 Gary Perlman (see Copyright file) */
 
@@ -53,15 +61,19 @@ double	covar[MAXVAR][MAXVAR];		/* covariance matrix		      */
 double	sum[MAXVAR];			/* sum of scores for each variable    */
 float	min[MAXVAR];			/* minimum value of each variable     */
 float	max[MAXVAR];			/* maximum value of each variable     */
-main (argc, argv) int argc; char **argv;
+
+int sstrings();
+int number();
+
+int checkargv (target, argv0)
+char	*target, *argv0;
 	{
-	Argv0 = argv[0];
-	input (argc, argv);
-	compute ();
-	if (doreg) regress ();
+	int	offset = strlen (argv0) - strlen (target);
+	if (offset < 0) return (0);
+	return (!strcmp (target, argv0+offset));
 	}
 
-input (argc, argv) int argc; char **argv;
+void input (argc, argv) int argc; char **argv;
 	{
 	char	 line[BUFSIZ];		/* each data line read in here	      */
 	char	 *ptr;
@@ -69,7 +81,7 @@ input (argc, argv) int argc; char **argv;
 	float	 temp[MAXVAR];		/* each input column number in here   */
 	register int row, col;		/* looping variables		      */
 
-	checkstdin (argv[0]);
+	// checkstdin (argv[0]);
 	/* CHECK argv[0] for regression option */
 	doreg = checkargv ("regress", argv[0]);
 
@@ -77,20 +89,24 @@ input (argc, argv) int argc; char **argv;
 	for (row = 0; row < argc-1 && row < MAXVAR; row++)
 		{
 		if (strlen (argv[row+1]) >= MAXLEN)
-			argv[row+1][MAXLEN-1] = NULL;
+			argv[row+1][MAXLEN-1] = '\0';
 		strcpy (varname[row], argv[row+1]);
 		}
 
 	/* SET nvar */
     firstline:
-	if (!fgets (line, BUFSIZ, stdin))
-		ERRDATA
+	if (!fgets (line, BUFSIZ, stdin)){
+       fprintf( stderr, "Not enough (or missing) data\n" );
+       exit(1);
+    }
 	ptr = line;
 	while (isspace (*ptr)) ptr++;
-	if (*ptr == NULL) goto firstline;
+	if (*ptr == '\0') goto firstline;
 	nvar = sstrings (line, (char *) in, MAXVAR, MAXLEN);
-	if (nvar > MAXVAR)
-		ERRMANY (variables, MAXVAR)
+	if (nvar > MAXVAR){
+		fprintf( stderr, "Too many variables, %d > %d\n", nvar, MAXVAR);
+        exit(1);
+    }
 	for (row = 0; row < nvar; row++)
 		min[row] = max[row] = atof (in[row]);
 
@@ -98,15 +114,17 @@ input (argc, argv) int argc; char **argv;
 	do	{
 		ptr = line;
 		while (isspace (*ptr)) ptr++;
-		if (*ptr == NULL) continue;
-		if (sstrings (line, (char *) in, MAXVAR, MAXLEN) != nvar)
-			ERRRAGGED
+		if (*ptr == '\0') continue;
+		//if (sstrings (line, (char *) in, MAXVAR, MAXLEN) != nvar)
+	    //		ERRRAGGED
 		for (row = 0; row < nvar; row++)
 			{
-			if (number (in[row]))
+			if (number (in[row])){
 				temp[row] = atof (in[row]);
-			else
-				ERRNUM (in[row])
+			} else {
+				fprintf( stderr, "Bad number: %s\n", in[row]);
+                exit(1);
+            }
 			sum[row] += temp[row];
 			if (temp[row] > max[row]) max[row] = temp[row];
 			if (temp[row] < min[row]) min[row] = temp[row];
@@ -115,11 +133,13 @@ input (argc, argv) int argc; char **argv;
 			}
 			npoints++;
 		} while (fgets (line, BUFSIZ, stdin));
-	if (npoints <= 1)
-		ERRDATA
+	if (npoints <= 1){
+       fprintf( stderr, "Not enough (or missing) data\n" );
+       exit(1);
+    }
 	}
 
-compute ()
+void compute ()
 	{
 	register int row, col;
 	double	denom;
@@ -172,7 +192,7 @@ compute ()
 			printf ("\n");
 	}
 
-regress ()
+void regress ()
 	{
 	register int row, col;		/* looping variables		      */
 	register int var;		/* looping variable		      */
@@ -187,13 +207,18 @@ regress ()
 	char	Fline[20];		/* holds the F ratio line	      */
 
 	/* INVERT the correlation matrix */
-	if (nvar >= npoints)
-		ERRDATA
+	if (nvar >= npoints){
+		fprintf( stderr, "More variables than points: %d >= %d\n", 
+             nvar, npoints );
+        exit(1);
+    }
 	for (row = 0; row < nvar; row++)
 	for (col = 0; col < row; col++)
 		correl[col][row] = correl[row][col];
-	if (invert (correl, nvar) == 0.0)
-		ERRMSG0 (Singular correlation matrix)
+	if (invert (correl, nvar) == 0.0){
+		fprintf( stderr, "Singular correlation matrix\n");
+        exit(1);
+    }
 
 	/* PRINT regression equation */
 	for (var = 0; var < nvar; var++)
@@ -259,8 +284,7 @@ regress ()
 	}
 
 /* returns the determinant of its input matrix. modifies matrix.	      */
-double
-invert (matrix, size) double matrix[MAXVAR][MAXVAR]; int size;
+double invert (matrix, size) double matrix[MAXVAR][MAXVAR]; int size;
 	{
 	int	j,k,l;
 	double	pivot;
@@ -285,3 +309,12 @@ invert (matrix, size) double matrix[MAXVAR][MAXVAR]; int size;
 		}
 	return (det);
 	}
+
+int main (argc, argv) int argc; char **argv;
+	{
+	Argv0 = argv[0];
+	input (argc, argv);
+	compute ();
+	if (doreg) regress ();
+	}
+

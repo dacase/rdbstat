@@ -1,10 +1,13 @@
-#include "unixstat.h"
-PGM(pair, Paired Data Analysis and Plots)
+#include <stdlib.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <math.h>
+#include <string.h>
+
+char	*Argv0 = "";
+
 /* Copyright (c) 1982 Gary Perlman (see Copyright file) */
 
-#if 0
-#  include <sgtty.h>		/* used for getting terminal status */
-#endif
 #define	W	16		/* format field widths */
 #define	D	4		/* format field decimal lengths */
 #define	MAXPAIRS	10000	/* at most this many pairs */
@@ -25,30 +28,51 @@ int	storedata = 1;		/* assume data will be stored */
 int	wantstats = 0;		/* are statistics wanted? */
 int	wantplot = 0;		/* is a plot wanted? */
 
-int main (argc, argv) char **argv;
+extern int sstrings();
+extern int fstrings();
+// extern void scatterplot();
+
+int number (char* string) 
 	{
-	Argv0 = argv[0];
-	initial (argc, argv);
-	readdata ();
-	if (wantstats) printstats ();
-	if (wantplot)
-		scatterplot (xy_data[0], xy_data[1], count, plotchar, height, width, 2);
-	return(0);
+	char	answer = 1;
+	while (isspace (*string)) string++;
+	if (!*string) return (0);
+	if (*string == '-') /* optional plus not allowed by atof */
+		{
+		string++;
+		if (!isdigit (*string) && *string != '.') return (0);
+		}
+	while (isdigit (*string)) string++;
+	if (*string == '.')
+		{
+		answer = 2;
+		string++;
+		}
+	while (isdigit (*string)) string++;
+	if (*string == 'E' || *string == 'e')
+		{
+		answer = 2;
+		string++;
+		if (*string == '+' || *string == '-') string++;
+		while (isdigit (*string)) string++;
+		}
+	while (isspace (*string)) string++;
+	return (strcmp(string,"") ? 0 : answer);
 	}
 
-initial (argc, argv) char **argv;
+int checkargv (target, argv0)
+char	*target, *argv0;
+	{
+	int	offset = strlen (argv0) - strlen (target);
+	if (offset < 0) return (0);
+	return (!strcmp (target, argv0+offset));
+	}
+
+void initial (argc, argv) char **argv;
     {
     int	argnum;
     char	*optr;
-    /*  struct	sgttyb	ttystatus;  */
     strcpy (program, argv[0]);
-    checkstdin (argv[0]);
-#if 0
-    if (gtty (fileno (stdout), &ttystatus) == 0 && ttystatus.sg_ospeed <= B1200)
-		{
-		width = 30; height = 10; /* set small size or slow terminal */
-		}
-#endif
 	if (checkargv ("biplot", program))
 	{
 	wantstats = 0;
@@ -81,15 +105,16 @@ initial (argc, argv) char **argv;
 	    case 'x':
 		    wantstats = 1;
 		    strcpy (name_x, optr);
-		    *optr = NULL;
+		    *optr = '\0';
 		    break;
 	    case 'y':
 		    wantstats = 1;
 		    strcpy (name_y, optr);
-		    *optr = NULL;
+		    *optr = '\0';
 		    break;
 	    default:
-		ERROPT (*(optr-1))
+		    fprintf (stderr, "Unknown option -- '%c'\n", *(optr-1));
+            exit(1);
 	    }
 	}
     if (!wantplot)
@@ -99,15 +124,17 @@ initial (argc, argv) char **argv;
 	}
     }
 
-readdata ()
+void readdata ()
 	{
 	double	atof ();
 	char	line[BUFSIZ];
 	char	array[3][SHORTSTRING];
 	int	fieldcount;
     firstline:
-	if (fgets (line, BUFSIZ, stdin) == NULL)
-		ERRDATA
+	if (fgets (line, BUFSIZ, stdin) == NULL){
+        fprintf( stderr, "Not enough (or no) input data\n" );
+        exit(1);
+    }
 	switch (sstrings (line, array, 3, SHORTSTRING))
 		{
 		case 0: goto firstline;
@@ -126,10 +153,15 @@ readdata ()
 	do  {
 	    fieldcount = sstrings (line, array, 3, SHORTSTRING);
 	    if (fieldcount == 0) continue;
-	    if (fieldcount != perline)
-		ERRMSG1 (Must have 1 or 2 numbers per line (see line %d), count+1)
-	    if (!number (array[0]) || ((perline == 2) && !number (array[1])))
-		    ERRMSG1 (Non-numerical input at line %d, count+1)
+	    if (fieldcount != perline){
+		   fprintf( stderr, "Must have 1 or 2 numbers per line (see line %d)\n",
+                 count+1);
+           exit(1);
+        }
+	    if (!number (array[0]) || ((perline == 2) && !number (array[1]))){
+		    fprintf( stderr, "Non-numerical input at line %d\n", count+1);
+            exit(1);
+        }
 	    if (perline == 2)
 		{
 		x	= atof (array[0]);
@@ -154,23 +186,27 @@ readdata ()
 	    else if (y < min_y) min_y = y;
 	    if (d > max_d) max_d = d;
 	    else if (d < min_d) min_d = d;
-	    if (storedata)
-		if (count < MAXPAIRS)
-		    {
-		    xy_data[0][count] = x;
-		    xy_data[1][count] = y;
+	    if (storedata){
+		    if (count < MAXPAIRS) {
+		        xy_data[0][count] = x;
+		        xy_data[1][count] = y;
+		    } else {
+		        // WARNING (too much data for a plot)
+		        storedata = 0;
+		        wantstats = 1;
 		    }
-		else
-		    {
-		    WARNING (too much data for a plot)
-		    storedata = 0;
-		    wantstats = 1;
-		    }
+        }
 	    count++;
     } while (fgets (line, BUFSIZ, stdin));
 	}
 
-printstats ()
+void prettyprint (title, x, y, d) char *title; double x, y, d;
+	{
+	printf ("%-*s %*.*f %*.*f %*.*f\n",
+		W, title, W, D, x, W, D, y, W, D, d);
+	}
+
+void printstats ()
 	{
 	double	mean_x, mean_y, mean_d;		/* means stored here */
 	double	sd_x, sd_y, sd_d, standev ();	/* standard deviations */
@@ -181,8 +217,10 @@ printstats ()
 	double	r, t_r, p_r;			/* correlation, t val & prob */
 	double rms;                  /* root-mean-square error between x and y */
 	float	fcount = (float) count;		/* floating count */
-	if (count <= 1)
-		ERRDATA
+	if (count <= 1) {
+        fprintf( stderr, "Not enough (or no) input data\n" );
+        exit(1);
+    }
 	printf ("%*s %*.*s %*.*s %*s\n", W, "",
 		W, W, name_x, W, W, name_y, W, "Difference");
 	prettyprint ("Minimums", min_x, min_y, min_d);
@@ -251,8 +289,14 @@ standev (sum, ss, count) double sum, ss;
 	return (sqrt ((ss-sum*sum/count)/(count-1)));
 	}
 
-prettyprint (title, x, y, d) char *title; double x, y, d;
+int main (argc, argv) char **argv;
 	{
-	printf ("%-*s %*.*f %*.*f %*.*f\n",
-		W, title, W, D, x, W, D, y, W, D, d);
+	Argv0 = argv[0];
+	initial (argc, argv);
+	readdata ();
+	if (wantstats) printstats ();
+	//if (wantplot)
+	//	scatterplot (xy_data[0], xy_data[1], count, plotchar, height, width, 2);
+	return(0);
 	}
+
