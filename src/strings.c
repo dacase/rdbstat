@@ -13,8 +13,8 @@
 #endif
 
 int sstrings (line, abase, maxstrings, maxchars)
-	char	*line;
-	char	*abase;
+	char	*line, *abase;
+    int maxstrings, maxchars;
 	{
 	int	nstrings = 0;
 	int	nchars;
@@ -39,6 +39,7 @@ int sstrings (line, abase, maxstrings, maxchars)
 int fstrings (ioptr, abase, maxstrings, maxchars)
 	FILE	*ioptr;
 	char	*abase;
+    int maxstrings, maxchars;
 	{
 	char	line[BUFSIZ];
 

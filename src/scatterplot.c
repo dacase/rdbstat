@@ -16,6 +16,7 @@
 
 void scatterplot (x, y, n, plotchar, height, width, border)
 float	*x, *y;
+int n, plotchar, height, width, border;
 	{
 	double	min_x = *x, min_y = *y;
 	double	max_x = *x, max_y = *y;

@@ -68,7 +68,7 @@ char	*target, *argv0;
 	return (!strcmp (target, argv0+offset));
 	}
 
-void initial (argc, argv) char **argv;
+void initial (argc, argv) int argc; char **argv; 
     {
     int	argnum;
     char	*optr;
@@ -283,13 +283,13 @@ void printstats ()
 	}
 
 double
-standev (sum, ss, count) double sum, ss;
+standev (sum, ss, count) double sum, ss; int count;
 	{
 	if (count <= 1) return (0.0);
 	return (sqrt ((ss-sum*sum/count)/(count-1)));
 	}
 
-int main (argc, argv) char **argv;
+int main (argc, argv) int argc; char **argv;
 	{
 	Argv0 = argv[0];
 	initial (argc, argv);
