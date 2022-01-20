@@ -8,7 +8,7 @@ brief, "rdb" is described as "not copyrighted and freely available";
 To install:
 
       cd src && make install
-      (optional, but recommnded): add the bin folder to your PATH
+      (optional, but recommended): add the bin folder to your PATH
 
 Documentation is in the doc folder.
 
